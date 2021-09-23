@@ -1,0 +1,19 @@
+{
+  "name": "app-mysql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meriquiroga/modoahorromysql.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meriquiroga/modoahorromysql/issues"
+  },
+  "homepage": "https://github.com/meriquiroga/modoahorromysql#readme"
+}
