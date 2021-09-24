@@ -1,0 +1,335 @@
+html * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh
+}
+
+header {
+  background-color: white;
+  width: 100%;
+  height: 80px;
+  padding: 0px 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav {
+  display: flex;
+}
+
+main {
+  flex: auto;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  align-items: center;
+}
+
+footer {
+  background-color: #ffb83c;
+  width: 100%;
+  min-height: 100px;
+  color: white;
+  text-align: center;
+  padding-top: 10px;
+}
+
+footer a {
+  color: #FCFCFC;
+  text-decoration: none;
+}
+
+.recordar {
+  font-size: small;
+  
+}
+.pHome {
+  text-align: center;
+}
+header a {
+  color: #727271;
+  text-decoration: none;
+  padding: 0px 10px;
+}
+
+.movimientos {
+  display: flex;
+}
+
+.cards {
+  padding: 0px 20px;
+  text-align: center;
+}
+
+form input[type="text"], [type="number"], [type="email"], [type="password"], [type="date"]  {
+  border: none;
+  padding: 10px 5px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 10px 5px;
+  outline: none;
+  color: gray;
+  font-size: small;
+}
+
+button {
+  background-color: #ffb83c;
+  border: none;
+  padding: 8px 25px;
+  border-radius: 20px;
+  text-align: center;
+  margin: 10px;
+  cursor: pointer;
+}
+
+main h2,
+h3, h4,
+p {
+  margin: 10px;
+}
+
+main img {
+  margin: 6px
+}
+
+.ico {
+  width: 50px;
+}
+
+.movimiento {
+  display: flex;
+  height: 50px;
+}
+
+.movimiento td {
+  display: flex;
+  align-items: center;
+  padding: 0px 15px;
+}
+
+.movimiento td:first-child {
+  width: 120px;
+  background-color: white;
+  text-align: center;
+  justify-content: center;
+}
+
+.movimiento td:nth-child(2n) {
+  width: 300px;
+  background-color: white;
+  justify-content: left;
+  text-align: left;
+}
+
+.movimiento td:nth-child(3n) {
+  width: 120px;
+  background-color: white;
+ justify-content: right;
+ text-align: right;
+}
+
+.movimiento td:nth-child(4n) {
+  width: 120px;
+  background-color: white;
+ justify-content: center;
+}
+
+#tabla {
+  overflow-y: scroll;
+  max-height: 300px;
+  margin:  0px 20px 20px 20px
+}
+
+#tabla::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
+
+#tabla::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #ffb83c;
+}
+
+form input[type="submit"] {
+  background-color: #ffb83c;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  text-align: center;
+  margin: 10px;
+  cursor: pointer;
+}
+
+a.active {
+  color: #ffb83c
+}
+
+.logSign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logSign form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logSign form input {
+  width: 400px;
+}
+
+.linkSign {
+  color: gray;
+  text-decoration: none;
+}
+
+.logSign input[type="submit"] {
+  background-color: #ffb83c;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  text-align: center;
+  margin: 10px;
+  width: 150px;
+}
+
+.volver button {
+  background-color: #ffb83c;
+  padding: 5px 12px;
+  font-size: small;
+}
+
+.objetivo {
+  display: flex;
+  align-items: center;
+}
+
+.objetivo img {
+  width: 20px;
+}
+
+@media (max-width: 800px) {
+  .movimiento td:first-child {
+    width: 120px;
+    background-color: white;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .movimiento td:nth-child(2n) {
+    width: 220px;
+    background-color: white;
+    justify-content: left;
+    text-align: left;
+  }
+  
+  .movimiento td:nth-child(3n) {
+    width: 100px;
+    background-color: white;
+   justify-content: right;
+   text-align: right;
+  }
+  
+  .movimiento td:nth-child(4n) {
+    width: 100px;
+    background-color: white;
+   justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .cards form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .movimiento td {
+    display: flex;
+    align-items: center;
+    padding: 0px 5px;
+  }
+  .movimiento td:first-child {
+    width: 120px;
+    background-color: white;
+    text-align: center;
+    font-size: small;
+    justify-content: center;
+  }
+  
+  .movimiento td:nth-child(2n) {
+    width: 120px;
+    background-color: white;
+    justify-content: left;
+    text-align: left;
+    font-size: small;
+  }
+  
+  .movimiento td:nth-child(3n) {
+    width: 100px;
+    background-color: white;
+   justify-content: right;
+   font-size: small;
+   text-align: right;
+  }
+  
+  .movimiento td:nth-child(4n) {
+    width: 90px;
+    background-color: white;
+   justify-content: center;
+   font-size: small;
+  }
+  .logSign form input {
+    width: 320px;
+  }
+}
+
+@media (max-width: 450px) {
+  
+  .movimiento td {
+    display: flex;
+    align-items: center;
+    padding: 0px 5px;
+  }
+  .movimiento td:first-child {
+    width: 90px;
+    background-color: white;
+    text-align: center;
+    font-size: small;
+  }
+  
+  .movimiento td:nth-child(2n) {
+    width: 150px;
+    background-color: white;
+    justify-content: left;
+    text-align: left;
+    font-size: small;
+  }
+  
+  .movimiento td:nth-child(3n) {
+    width: 80px;
+    background-color: white;
+   justify-content: right;
+   font-size: small;
+   text-align: right;
+  }
+  
+  .movimiento td:nth-child(4n) {
+    width: 70px;
+    background-color: white;
+   justify-content: center;
+   font-size: small;
+  }
+
+}

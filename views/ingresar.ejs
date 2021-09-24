@@ -1,0 +1,19 @@
+<%- include('partials/head.ejs') %>
+<%- include('partials/header.ejs') %>
+
+<img class="ico" src="/assets/ico.png" alt="">
+<div class="logSign">
+        <h3>Ingresá a tu cuenta aquí</h3>
+        <form action="/ingresar" method="POST">
+            <input type="email" name="email" id="email" placeholder="E-mail" required/>
+            <input type="password" name="password" placeholder="Contraseña" required/>
+            <input type="submit" value="INGRESAR">
+            <% if (error) { %>
+                <p style="color: gray;"><%= error %></p>
+            <% } %>
+        </form>
+        <p>¿Todavía no tenés cuenta? <a class="linkSign" href="/crear-cuenta">Creala aquí</a></p>
+        <a class="volver" href="/"><button>VOLVER</button></a>          
+</div>
+
+<%- include('partials/footer.ejs') %>

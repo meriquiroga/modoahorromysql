@@ -1,0 +1,14 @@
+<%- include('partials/head.ejs') %>
+<%- include('partials/header.ejs') %>
+    
+        <img class="ico" src="/assets/ico.png" alt="">
+        <h2>Bienvenido/a a Modo Ahorro</h2>
+        <p class="pHome" >Llevá el control de tus ahorros actualizado y llegá más rápido a tu objetivo.</p>
+        <% if (!logueado) { %>
+        <h4>¡Empezá hoy!</h4>
+        <a href="/crear-cuenta"><button>CREAR CUENTA</button></a>
+        <a href="/ingresar"><button>INGRESAR</button></a>
+        <% } %>       
+        <img src="/assets/modoahorro.png" alt="">
+
+<%- include('partials/footer.ejs') %>

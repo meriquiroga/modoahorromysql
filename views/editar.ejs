@@ -1,0 +1,20 @@
+<%- include('partials/head.ejs') %>
+<%- include('partials/header.ejs') %>
+
+<img class="ico" src="/assets/ico.png" alt="">
+<div class="cards">
+        <h4>Editar movimiento</h4>
+        <form action="/editar/<%= movimientoId %>" method="POST">
+            <span><%= movimiento.date.getDate() %>/<%= movimiento.date.getMonth() %>/<%= movimiento.date.getFullYear().toString().substr(2,2) %></span>
+            <input type="text" name="description" id="description" value="<%= movimiento.description %>" />
+            <input type="number" step="0.01" name="number" id="number" value="<%= movimiento.number.toFixed(2) %>" />
+            <input type="submit" value="GUARDAR">
+            <% if (error) { %>
+                <p style="color: gray;"><%= error %></p>
+            <% } %>
+        </form>
+</div>
+<img src="/assets/modoahorro.png" alt="">
+<a class="volver" href="/balance"><button>VOLVER</button></a>          
+
+<%- include('partials/footer.ejs') %>
