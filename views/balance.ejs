@@ -8,7 +8,7 @@
             <h2>AHORRO: $ <%= ahorro %></h2>
             <div class="objetivo">
                 <p>Tu objetivo de ahorro: $ <%= objetivo.toFixed(2) %></p>
-                <a href="/editar-objetivo/<%= userId %>"><img src="/assets/edit.png" alt=""></a>    
+                <a href="/editar-objetivo/<%= usuarioId %>"><img src="/assets/edit.png" alt=""></a>    
             </div>
             <div class="movimientos">
                 <div class="cards">
@@ -18,7 +18,7 @@
                         <input type="date" name="date" id="date" placeholder="Fecha" required />
                         <input type="text" name="description" id="description" placeholder="Descripción" required />
                         <input type="number" step="0.01" name="number" id="number" placeholder="Importe" required />
-                        <input type="hidden" name="userId" id="userId" value="<%= logueado ? userId : null %>" />
+                        <input type="hidden" name="usuarioId" id="usuarioId" value="<%= logueado ? usuarioId : null %>" />
                         <input type="submit" value="GUARDAR">
                         <% if (error) { %>
                             <p style="color: gray;">
@@ -38,7 +38,7 @@
                                 <th>
                                     <tr class="movimiento">
                                         <td>
-                                            <%= movimiento.date.getDate() %>/<%= movimiento.date.getMonth() %>/<%= movimiento.date.getFullYear().toString().substr(2,2) %>
+                                            <%= movimiento.date.getDate() %>/<%= movimiento.date.getMonth() + 1 %>/<%= movimiento.date.getFullYear().toString().substr(2,2) %>
                                         </td>
                                         <td>
                                             <%= movimiento.description %>
@@ -47,8 +47,8 @@
                                              $ <%= (movimiento.number).toFixed(2) %>
                                         </td>
                                         <td class="botones">
-                                            <a href="/editar/<%= movimiento._id %>"><img src="/assets/edit.png" alt=""></a>
-                                            <a href="/eliminar/<%= movimiento._id %>"><img src="/assets/delete.png" alt=""></a>
+                                            <a href="/editar/<%= movimiento.id %>"><img src="/assets/edit.png" alt=""></a>
+                                            <a href="/eliminar/<%= movimiento.id %>"><img src="/assets/delete.png" alt=""></a>
                                         </td>
                                     </tr>
                                 </th>

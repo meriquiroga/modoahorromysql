@@ -9,7 +9,7 @@ const usersControllers = {
       logueado: req.session.logueado,
       name: req.session.name,
       objetivo: req.session.objetivo,
-      userId: req.session.userId,
+      usuarioId: req.session.usuarioId,
     });
   },
 
@@ -20,19 +20,22 @@ const usersControllers = {
       logueado: req.session.logueado,
       name: req.session.name,
       objetivo: req.session.objetivo,
-      userId: req.session.userId,
+      usuarioId: req.session.usuarioId,
     });
   },
 
   ingresarForm: async (req, res) => {
     const { email, password } = req.body;
     try {
-      let usuario = await Usuario.findOne({ email });
+      let usuario = await Usuario.findOne({ 
+        where: {
+          email }
+        });
       if (bcryptjs.compareSync(password, usuario.password)) {
         req.session.logueado = true;
         req.session.name = usuario.name;
         req.session.objetivo = usuario.objetivo;
-        req.session.userId = usuario._id;
+        req.session.usuarioId = usuario.id;
         return res.redirect("/balance");
       } else {
          return res.render("ingresar", {
@@ -41,7 +44,7 @@ const usersControllers = {
           logueado: req.session.logueado,
           name: req.session.name,
           objetivo: req.session.objetivo,
-          userId: req.session.userId,
+          usuarioId: req.session.usuarioId,
         });
       }
     } catch (error) {
@@ -51,7 +54,7 @@ const usersControllers = {
         logueado: req.session.logueado,
         name: req.session.name,
         objetivo: req.session.objetivo,
-        userId: req.session.userId,
+        usuarioId: req.session.usuarioId,
       });
     }
   },
@@ -60,20 +63,23 @@ const usersControllers = {
   crearCuentaForm: async (req, res) => {
     const { name, email, password, objetivo } = req.body;
     let hashedPass = bcryptjs.hashSync(password);
-    const nuevoUser = new Usuario({
+    const nuevoUser = await new Usuario({
       name,
       email,
       password: hashedPass,
       objetivo
     });
     try {
-      let existeUser = await Usuario.findOne({ email });
+      let existeUser = await Usuario.findOne({ 
+        where: {
+          email }
+        });
       if (!existeUser) {
         let agregarUser = await nuevoUser.save();
         req.session.logueado = true;
         req.session.name = agregarUser.name;
         req.session.objetivo = agregarUser.objetivo;
-        req.session.userId = agregarUser._id;
+        req.session.usuarioId = agregarUser.id;
         req.session.movimiento = null;
         return res.redirect("/balance");
       } else {
@@ -84,7 +90,7 @@ const usersControllers = {
           logueado: req.session.logueado,
           name: req.session.name,
           objetivo: req.session.objetivo,
-          userId: req.session.userId,
+          usuarioId: req.session.usuarioId,
         });
       }
     } catch (error) {
@@ -94,7 +100,7 @@ const usersControllers = {
         logueado: req.session.logueado,
         name: req.session.name,
         objetivo: req.session.objetivo,
-        userId: req.session.userId,
+        usuarioId: req.session.usuarioId,
       });
     }
   },
@@ -107,14 +113,14 @@ const usersControllers = {
 
   editarObjetivo: async (req, res) => {
     try {
-        let usuario = await Usuario.findOne({ _id: req.params._id });
+        let usuario = await Usuario.findByPk(req.params.id);
         res.render("editar-objetivo", {
             title: "Editar objetivo",
             error: null,
             logueado: req.session.logueado,
             name: req.session.name,
             objetivo: usuario.objetivo,
-            userId: req.session.userId,        
+            usuarioId: req.session.usuarioId,        
        });
     } catch (error) {
       res.render("error", {
@@ -123,17 +129,18 @@ const usersControllers = {
         logueado: req.session.logueado,
         name: req.session.name,
         objetivo: req.session.objetivo,
-        userId: req.session.userId,
+        usuarioId: req.session.usuarioId,
       });
     }
   },
 
   guardarObjetivoEditado: async (req, res) => {
-    let objetivoGuardado = await Usuario.findOneAndUpdate({ _id: req.params._id }, { objetivo: req.body.objetivo }, { new: true });
+    await Usuario.update({ ...req.body, objetivo: req.body.objetivo}, {
+      where: {
+        id: req.params.id
+      }});
     res.redirect("/balance");
   },
-
-
 };
 
 module.exports = usersControllers;

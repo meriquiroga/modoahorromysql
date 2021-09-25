@@ -10,7 +10,7 @@ const movimientosControllers = {
       logueado: req.session.logueado,
       name: req.session.name,
       objetivo: req.session.objetivo,
-      userId: req.session.userId,
+      usuarioId: req.session.usuarioId,
     });
   },
 
@@ -21,18 +21,23 @@ const movimientosControllers = {
       logueado: req.session.logueado,
       name: req.session.name,
       objetivo: req.session.objetivo,
-      userId: req.session.userId,
+      usuarioId: req.session.usuarioId,
     });
   },
 
   balance: async (req, res) => {
     if (req.session.logueado) {
       try {
-        let usuario = await Usuario.findOne({ _id: req.session.userId });
+        let usuario = await Usuario.findOne({ 
+          where: {
+            id: req.session.usuarioId }
+          });
         req.session.objetivo = usuario.objetivo;
         
-        const movimientos = await Movimiento.find({
-          userId: req.session.userId,
+        const movimientos = await Movimiento.findAll({
+          where: {
+          usuarioId: req.session.usuarioId,
+          }
         });
         
         return res.render("balance", {
@@ -42,7 +47,7 @@ const movimientosControllers = {
           logueado: req.session.logueado,
           name: req.session.name,
           objetivo: req.session.objetivo,
-          userId: req.session.userId,
+          usuarioId: req.session.usuarioId,
         });
       } catch (error) {
         res.render("error", {
@@ -51,7 +56,7 @@ const movimientosControllers = {
           logueado: req.session.logueado,
           name: req.session.name,
           objetivo: req.session.objetivo,
-          userId: req.session.userId,
+          usuarioId: req.session.usuarioId,
         });
       }
     }
@@ -59,12 +64,12 @@ const movimientosControllers = {
   },
 
   guardarMovimiento: async (req, res) => {
-    const { date, description, number, userId } = req.body;
-    let newMovimiento = Movimiento.create({
+    const { date, description, number, usuarioId } = req.body;
+    let newMovimiento = new Movimiento({
       date,
       description,
       number,
-      userId,
+      usuarioId,
     });
     try {
       await newMovimiento.save();
@@ -77,28 +82,29 @@ const movimientosControllers = {
         logueado: req.session.logueado,
         name: req.session.name,
         objetivo: req.session.objetivo,
-        userId: req.session.userId,
+        usuarioId: req.session.usuarioId,
       });
     }
   },
 
   eliminar: async (req, res) => {
-    await Movimiento.findOneAndDelete({ _id: req.params._id });
+    let movaborrar = await Movimiento.findByPk(req.params.id)
+    await movaborrar.destroy()
     res.redirect("/balance");
   },
   
   editar: async (req, res) => {
     try {
-        let movimiento = await Movimiento.findOne({ _id: req.params._id });
+        let movaeditar = await Movimiento.findByPk(req.params.id);
         res.render("editar", {
             title: "Editar movimiento",
             error: null,
             logueado: req.session.logueado,
             name: req.session.name,
             objetivo: req.session.objetivo,
-            userId: req.session.userId,
-            movimientoId: req.params._id,
-            movimiento
+            usuarioId: req.session.usuarioId,
+            movimientoId: req.params.id,
+            movimiento: movaeditar
        });
     } catch (error) {
       res.render("error", {
@@ -107,13 +113,17 @@ const movimientosControllers = {
         logueado: req.session.logueado,
         name: req.session.name,
         objetivo: req.session.objetivo,
-        userId: req.session.userId,
+        usuarioId: req.session.usuarioId,
       });
     }
   },
 
   guardarEditado: async (req, res) => {
-    await Movimiento.findOneAndUpdate({ _id: req.params._id }, { ...req.body }, { new: true });
+    console.log(req.body)
+    await Movimiento.update({ ...req.body, description:req.body.description, number:req.body.number }, { 
+      where: {
+        id: req.params.id 
+    }});
     res.redirect("/balance");
   },
 

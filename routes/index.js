@@ -13,15 +13,15 @@ router.route('/balance')
 .get(movimientosControllers.balance)
 .post(movimientosControllers.guardarMovimiento)
 
-router.route('/editar/:_id')
+router.route('/editar/:id')
 .get(movimientosControllers.editar)
 .post(movimientosControllers.guardarEditado)
 
-router.route('/editar-objetivo/:_id')
+router.route('/editar-objetivo/:id')
 .get(usersControllers.editarObjetivo)
 .post(usersControllers.guardarObjetivoEditado)
 
-router.route('/eliminar/:_id')
+router.route('/eliminar/:id')
 .get(movimientosControllers.eliminar)
 
 router.route('/ingresar')

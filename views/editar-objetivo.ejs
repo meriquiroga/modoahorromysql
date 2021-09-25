@@ -4,7 +4,7 @@
 <img class="ico" src="/assets/ico.png" alt="">
 <div class="cards">
         <h4>Editar objetivo</h4>
-        <form action="/editar-objetivo/<%= userId %>" method="POST">
+        <form action="/editar-objetivo/<%= usuarioId %>" method="POST">
             <input type="number" name="objetivo" id="objetivo" value="<%= objetivo.toFixed(2) %>" />
             <input type="submit" value="GUARDAR">
             <% if (error) { %>
