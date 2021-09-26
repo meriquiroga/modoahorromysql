@@ -21,7 +21,7 @@ const Usuario = database.define('usuario', {
         allowNull: false,
       },
       objetivo: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false,
         defaultValue: 0
       },

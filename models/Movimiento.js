@@ -17,7 +17,7 @@ const Movimiento = database.define("movimiento", {
     allowNull: false,
   },
   number: {
-    type: Sequelize.DECIMAL,
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
 });

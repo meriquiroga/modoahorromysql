@@ -1,11 +1,10 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
-<% let ahorro=movimientos.reduce((sum, value) => (sum + value.number), 0).toFixed(2) %>
-
+<% let ahorro=movimientos.reduce((sum, value) => (sum + value.number), 0) %>
 
             <img class="ico" src="/assets/ico.png" alt="">
             <h4>¡Hola, <%= name %>!</h4>
-            <h2>AHORRO: $ <%= ahorro %></h2>
+            <h2>AHORRO: $ <%= ahorro.toFixed(2) %></h2>
             <div class="objetivo">
                 <p>Tu objetivo de ahorro: $ <%= objetivo.toFixed(2) %></p>
                 <a href="/editar-objetivo/<%= usuarioId %>"><img src="/assets/edit.png" alt=""></a>    
@@ -35,6 +34,7 @@
                         <p>Aquí verás tus movimientos</p>
                         <% } else { %>
                             <% movimientos.forEach(movimiento=> { %>
+                                       
                                 <th>
                                     <tr class="movimiento">
                                         <td>
@@ -44,7 +44,7 @@
                                             <%= movimiento.description %>
                                         </td>
                                         <td>
-                                             $ <%= (movimiento.number).toFixed(2) %>
+                                             $ <%= movimiento.number.toFixed(2) %>
                                         </td>
                                         <td class="botones">
                                             <a href="/editar/<%= movimiento.id %>"><img src="/assets/edit.png" alt=""></a>

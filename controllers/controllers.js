@@ -64,6 +64,7 @@ const movimientosControllers = {
   },
 
   guardarMovimiento: async (req, res) => {
+    console.log(req.body)
     const { date, description, number, usuarioId } = req.body;
     let newMovimiento = new Movimiento({
       date,
@@ -119,7 +120,6 @@ const movimientosControllers = {
   },
 
   guardarEditado: async (req, res) => {
-    console.log(req.body)
     await Movimiento.update({ ...req.body, description:req.body.description, number:req.body.number }, { 
       where: {
         id: req.params.id 
