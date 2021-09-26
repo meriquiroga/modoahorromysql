@@ -1,13 +1,15 @@
 <%- include('partials/head.ejs') %>
-<%- include('partials/header.ejs') %>
-<% let ahorro=movimientos.reduce((sum, value) => (sum + value.number), 0) %>
+    <%- include('partials/header.ejs') %>
+        <% let ahorro=movimientos.reduce((sum, value)=> (sum + value.number), 0) %>
 
             <img class="ico" src="/assets/ico.png" alt="">
             <h4>¡Hola, <%= name %>!</h4>
-            <h2>AHORRO: $ <%= ahorro.toFixed(2) %></h2>
+            <h2>AHORRO: $ <%= ahorro.toFixed(2) %>
+            </h2>
             <div class="objetivo">
-                <p>Tu objetivo de ahorro: $ <%= objetivo.toFixed(2) %></p>
-                <a href="/editar-objetivo/<%= usuarioId %>"><img src="/assets/edit.png" alt=""></a>    
+                <p>Tu objetivo de ahorro: $ <%= objetivo.toFixed(2) %>
+                </p>
+                <a href="/editar-objetivo/<%= usuarioId %>"><img src="/assets/edit.png" alt=""></a>
             </div>
             <div class="movimientos">
                 <div class="cards">
@@ -17,7 +19,8 @@
                         <input type="date" name="date" id="date" placeholder="Fecha" required />
                         <input type="text" name="description" id="description" placeholder="Descripción" required />
                         <input type="number" step="0.01" name="number" id="number" placeholder="Importe" required />
-                        <input type="hidden" name="usuarioId" id="usuarioId" value="<%= logueado ? usuarioId : null %>" />
+                        <input type="hidden" name="usuarioId" id="usuarioId"
+                            value="<%= logueado ? usuarioId : null %>" />
                         <input type="submit" value="GUARDAR">
                         <% if (error) { %>
                             <p style="color: gray;">
@@ -34,21 +37,24 @@
                         <p>Aquí verás tus movimientos</p>
                         <% } else { %>
                             <% movimientos.forEach(movimiento=> { %>
-                                       
+
                                 <th>
                                     <tr class="movimiento">
                                         <td>
-                                            <%= movimiento.date.getDate() %>/<%= movimiento.date.getMonth() + 1 %>/<%= movimiento.date.getFullYear().toString().substr(2,2) %>
+                                            <%= movimiento.date.getDate() %>/<%= movimiento.date.getMonth() + 1 %>/<%=
+                                                        movimiento.date.getFullYear().toString().substr(2,2) %>
                                         </td>
                                         <td>
                                             <%= movimiento.description %>
                                         </td>
                                         <td>
-                                             $ <%= movimiento.number.toFixed(2) %>
+                                            $ <%= movimiento.number.toFixed(2) %>
                                         </td>
                                         <td class="botones">
-                                            <a href="/editar/<%= movimiento.id %>"><img src="/assets/edit.png" alt=""></a>
-                                            <a href="/eliminar/<%= movimiento.id %>"><img src="/assets/delete.png" alt=""></a>
+                                            <a href="/editar/<%= movimiento.id %>"><img src="/assets/edit.png"
+                                                    alt=""></a>
+                                            <a href="/eliminar/<%= movimiento.id %>"><img src="/assets/delete.png"
+                                                    alt=""></a>
                                         </td>
                                     </tr>
                                 </th>
@@ -57,4 +63,4 @@
                 </table>
             </div>
 
-<%- include('partials/footer.ejs') %>
+            <%- include('partials/footer.ejs') %>

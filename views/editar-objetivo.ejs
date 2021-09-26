@@ -5,7 +5,7 @@
 <div class="cards">
         <h4>Editar objetivo</h4>
         <form action="/editar-objetivo/<%= usuarioId %>" method="POST">
-            <input type="number" name="objetivo" id="objetivo" value="<%= objetivo.toFixed(2) %>" />
+            <input type="number" step="0.01" name="objetivo" id="objetivo" value="<%= objetivo.toFixed(2) %>" />
             <input type="submit" value="GUARDAR">
             <% if (error) { %>
                 <p style="color: gray;"><%= error %></p>

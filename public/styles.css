@@ -220,6 +220,12 @@ a.active {
   width: 20px;
 }
 
+.opcional {
+  font-size: x-small;
+  color: gray;
+  margin-top: -6px;
+}
+
 @media (max-width: 800px) {
   .movimiento td:first-child {
     width: 120px;
